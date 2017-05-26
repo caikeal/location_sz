@@ -40,10 +40,10 @@ class BeaconController extends BaseController
         $beacon->minor = $request->input('minor');
         $beacon->floor = $request->input('floor') ?:1;
         if ($beacon->save()) {
-            return $this->response()->array(["data" => ["message" => "success"]]);
+            return $this->response()->array(["data" => ["message" => "success"]])->header('Access-Control-Allow-Origin', '*');
         }
 
-        return $this->response()->errorBadRequest('保存失败');
+        return $this->response()->errorBadRequest('保存失败')->header('Access-Control-Allow-Origin', '*');
     }
 
     /**
