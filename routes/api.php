@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 // 获取beacon列表
-Route::get('/beacons', 'BeaconController@index');
+Route::post('/beacons', 'BeaconController@index');
 // 录入beacon
 Route::post('/beacon/create', 'BeaconController@create');
 // 更新beacon
