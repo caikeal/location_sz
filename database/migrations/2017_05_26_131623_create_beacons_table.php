@@ -15,7 +15,15 @@ class CreateBeaconsTable extends Migration
     {
         Schema::create('beacons', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->integer('major');
+            $table->integer('minor');
+            $table->integer('rssi')->nullable();
+            $table->decimal('x', 18, 9);
+            $table->decimal('y', 18, 9);
+            $table->string('floor');
+            $table->decimal('accuracy',8, 4)->nullable();
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
         });
     }
 

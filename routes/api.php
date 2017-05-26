@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// 获取beacon列表
+Route::get('/beacons', 'BeaconController@index');
+// 录入beacon
+Route::post('/beacon/create', 'BeaconController@create');
+// 更新beacon
+Route::post('/beacon/{id}', 'BeaconController@update')->where('id', '[0-9]+');
+// 删除beacon
+Route::post('/beacon/{id}/delete', 'BeaconController@delete')->where('id', '[0-9]+');
