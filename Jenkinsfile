@@ -26,7 +26,7 @@ pipeline {
         stage('通知人工验收'){
             steps{
                 script{
-                    wrap() {
+                    
                         if(params.isCommitQA==false){
                             echo "不需要通知测试人员人工验收"
                         }else{
@@ -35,7 +35,7 @@ pipeline {
                             subject: "PineLine '${env.JOB_NAME}' (${env.BUILD_NUMBER})人工验收通知",
                             body: "${BUILD_USER}提交的PineLine '${env.JOB_NAME}' (${env.BUILD_NUMBER})进入人工验收环节\n请及时前往${env.BUILD_URL}进行测试验收"
                         }
-                    }
+                    
                 }
             }
         }
