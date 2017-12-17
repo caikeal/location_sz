@@ -12,18 +12,8 @@ pipeline {
     }
     //常量参数，初始确定后一般不需更改
     environment{
-        // 验收人员邮箱地址【参数值对外隐藏】
+        //验收人员邮箱地址【参数值对外隐藏】
         QA_EMAIL_LIST='caikeal@qq.com,546487590@qq.com'
-        // 腾讯docker用户名
-        DOCKER_REPOSITORY_TX_USERNAME = credentials('DOCKER_REPOSITORY_TX_USERNAME')
-        // 腾讯docker用户密码
-        DOCKER_REPOSITORY_TX_PASSWORD = credentials('DOCKER_REPOSITORY_TX_PASSWORD')
-        // Rancher docker access_key
-        CATTLE_ACCESS_KEY = credentials('CATTLE_ACCESS_KEY')
-        // Rancher docker secret_key
-        CATTLE_SECRET_KEY = credentials('CATTLE_SECRET_KEY')
-        // 腾讯镜像仓库空间名
-        REGISTRY_NAME = 'chedianai'
     }
     options {
         //保持构建的最大个数
