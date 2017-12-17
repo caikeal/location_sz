@@ -26,14 +26,14 @@ pipeline {
         stage('通知人工验收'){
             steps{
                 script{
-                    
+                        echo "${env.CHANGE_AUTHOR}"
                         if(params.isCommitQA==false){
                             echo "不需要通知测试人员人工验收"
                         }else{
                             //邮件通知测试人员人工验收
                             mail to: "${env.QA_EMAIL_LIST}",
                             subject: "PineLine '${env.JOB_NAME}' (${env.BUILD_NUMBER})人工验收通知",
-                            body: "${env.GIT_COMMITTER_NAME}提交的PineLine '${env.JOB_NAME}' (${env.BUILD_NUMBER})进入人工验收环节\n请及时前往${env.BUILD_URL}进行测试验收"
+                            body: "${env.CHANGE_AUTHOR}提交的PineLine '${env.JOB_NAME}' (${env.BUILD_NUMBER})进入人工验收环节\n请及时前往${env.BUILD_URL}进行测试验收"
                         }
                     
                 }
