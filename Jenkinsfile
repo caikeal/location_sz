@@ -31,7 +31,7 @@ pipeline {
                             echo "不需要通知测试人员人工验收"
                         }else{
                             //邮件通知测试人员人工验收
-                            mail to: "${QA_EMAIL}",
+                            mail to: "${QA_EMAIL_LIST}",
                             subject: "PineLine '${JOB_NAME}' (${BUILD_NUMBER})人工验收通知",
                             body: "${BUILD_USER}提交的PineLine '${JOB_NAME}' (${BUILD_NUMBER})进入人工验收环节\n请及时前往${env.BUILD_URL}进行测试验收"
                         }
