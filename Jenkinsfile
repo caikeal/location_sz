@@ -29,10 +29,11 @@ pipeline {
                     if(params.isCommitQA==false){
                         echo "不需要通知测试人员人工验收"
                     }else{
+                        def jobInfo=env.JOB_NAME.split("/")
                         emailext (
                             body: """
                             <p>请开发组长用个人账户登录Jenkins Pipeline页面，同意${env.BRANCH_NAME}分支部署</p>
-                            <p>Pipeline页面： <a href='${env.JENKINS_URL}blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline'>${env.JOB_NAME}(pipeline page)</a></p>
+                            <p>Pipeline页面： <a href='${env.JENKINS_URL}blue/organizations/jenkins/${jobInfo[0]}/detail/${jobInfo[1]}/${env.BUILD_NUMBER}/pipeline'>${env.JOB_NAME}(pipeline page)</a></p>
                             """,
                             to: "${env.QA_EMAIL_LIST}",
                             subject: "${env.JOB_NAME}-${env.BUILD_NUMBER}-请开发组长同意${env.BRANCH_NAME}分支部署",
