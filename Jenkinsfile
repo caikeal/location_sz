@@ -19,7 +19,9 @@ pipeline {
         //保持构建的最大个数
         buildDiscarder(logRotator(numToKeepStr: '10')) 
     }
-
+    triggers {
+        gitlab(triggerOnPush: true, triggerOnMergeRequest: true, branchFilterType: 'All')
+    }
     //pipeline的各个阶段场景
     stages {
     
@@ -27,6 +29,12 @@ pipeline {
             steps{
                 script{
                     echo "拉取代码哦~"
+                    // 拉取git源码
+                    checkout([
+                        $class: 'GitSCM', 
+                        branches: [[name: '*/develop']],        
+                        userRemoteConfigs: [[credentialsId: "github", url: "git@github.com:caikeal/location_sz.git"]]
+                    ])
                 }
             }
         }
