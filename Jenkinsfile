@@ -26,16 +26,21 @@ pipeline {
         stage('通知人工验收'){
             steps{
                 script{
-                        echo "${env.CHANGE_AUTHOR}"
+                    wrap([$class: 'BuildUser']) {
                         if(params.isCommitQA==false){
                             echo "不需要通知测试人员人工验收"
                         }else{
-                            //邮件通知测试人员人工验收
-                            mail to: "${env.QA_EMAIL_LIST}",
-                            subject: "PineLine '${env.JOB_NAME}' (${env.BUILD_NUMBER})人工验收通知",
-                            body: "${env.CHANGE_AUTHOR}提交的PineLine '${env.JOB_NAME}' (${env.BUILD_NUMBER})进入人工验收环节\n请及时前往${env.BUILD_URL}进行测试验收"
+                            emailext (
+                                body: """
+                                <p>请开发组长用个人账户登录Jenkins Pipeline页面，请开发组长同意部署</p>
+                                <p>Pipeline页面： <a href='${env.JENKINS_URL}blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline'>${env.JOB_NAME}(pipeline page)</a></p>
+                                """,
+                                to: "${env.QA_EMAIL_LIST}",
+                                subject: "${env.JOB_NAME}-${env.BUILD_NUMBER}-请开发组长同意部署",
+                                attachLog: true
+                            )
                         }
-                    
+                    }
                 }
             }
         }
