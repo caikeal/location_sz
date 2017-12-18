@@ -30,7 +30,7 @@ pipeline {
                     checkout([
                         $class: 'GitSCM', 
                         branches: [[name: '*/develop']],        
-                        userRemoteConfigs: [[credentialsId: "${credentials('github')}", url: "git@github.com:caikeal/location_sz.git"]]
+                        userRemoteConfigs: [[url: "git@github.com:caikeal/location_sz.git"]]
                     ])
                 }
             }
