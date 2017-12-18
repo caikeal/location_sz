@@ -26,7 +26,7 @@ pipeline {
         stage('测试拉去代码'){
             steps{
                 script{
-                    echo "拉取代码哦"
+                    echo "拉取代码哦~"
                 }
             }
         }
