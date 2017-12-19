@@ -26,7 +26,7 @@ pipeline {
             steps{
                 script{
                     echo "拉取代码哦~"
-                    aps = "12345"
+                    env.aps = "12345"
                 }
             }
         }
@@ -34,9 +34,8 @@ pipeline {
         stage('获取参数'){
             steps{
                 script{
-                    apt = "123"
                     sh '''
-                        echo "${apt}"
+                        echo "${env.aps}"
                         echo "${aps}"
                     '''
                 }
