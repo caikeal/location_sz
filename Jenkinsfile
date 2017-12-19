@@ -22,16 +22,19 @@ pipeline {
     //pipeline的各个阶段场景
     stages {
     
-        stage('测试拉去代码'){
+        stage('测试参数设置'){
             steps{
                 script{
                     echo "拉取代码哦~"
-                    // 拉取git源码
-                    checkout([
-                        $class: 'GitSCM', 
-                        branches: [[name: '*/develop']],        
-                        userRemoteConfigs: [[url: "git@github.com:caikeal/location_sz.git"]]
-                    ])
+                    def aps = "123"
+                }
+            }
+        }
+        
+        stage('获取参数'){
+            steps{
+                script{
+                    echo "${aps}"
                 }
             }
         }
