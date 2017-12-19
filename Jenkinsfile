@@ -26,7 +26,7 @@ pipeline {
             steps{
                 script{
                     echo "拉取代码哦~"
-                    aps = "123"
+                    aps = "12345"
                 }
             }
         }
@@ -34,7 +34,9 @@ pipeline {
         stage('获取参数'){
             steps{
                 script{
-                    echo "${aps}"
+                    sh '''
+                        echo "${aps}"
+                    '''
                 }
             }
         }
