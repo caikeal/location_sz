@@ -36,7 +36,6 @@ pipeline {
                 script{
                     echo "${env.aps}"
                     sh '''
-                        echo "${env.aps}"
                         echo "${aps}"
                     '''
                 }
