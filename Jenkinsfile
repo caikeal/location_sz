@@ -35,8 +35,10 @@ pipeline {
             steps{
                 script{
                     echo "${env.aps}"
+                    def apt = "123"
                     sh '''
                         echo "${aps}"
+                        echo "${apt}"
                     '''
                 }
             }
