@@ -34,7 +34,9 @@ pipeline {
         stage('获取参数'){
             steps{
                 script{
+                    apt = "123"
                     sh '''
+                        echo "${apt}"
                         echo "${aps}"
                     '''
                 }
