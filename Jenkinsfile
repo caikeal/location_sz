@@ -26,7 +26,7 @@ pipeline {
             steps{
                 script{
                     echo "拉取代码哦~"
-                    def aps = "123"
+                    aps = "123"
                 }
             }
         }
