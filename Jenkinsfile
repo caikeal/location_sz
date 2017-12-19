@@ -34,6 +34,7 @@ pipeline {
         stage('获取参数'){
             steps{
                 script{
+                    echo "${env.aps}"
                     sh '''
                         echo "${env.aps}"
                         echo "${aps}"
