@@ -35,7 +35,7 @@ pipeline {
             steps{
                 script{
                     if (env.TAG_NAME) {
-                        echo "${env.TAG_NAME}"
+                        echo "${env.BRANCH_NAME} - ${env.TAG_NAME}"
                     } else {
                         echo "${env.BRANCH_NAME}"
                     }
