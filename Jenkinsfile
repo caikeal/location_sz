@@ -34,11 +34,15 @@ pipeline {
         stage('获取参数'){
             steps{
                 script{
-                    if (env.TAG_NAME) {
-                        echo "${env.BRANCH_NAME} - ${env.TAG_NAME}"
-                    } else {
-                        echo "${env.BRANCH_NAME}"
-                    }
+                    env.Master_Confirm = input(
+                        message: '是否开始部署正式环境？',
+                        ok: "同意进行正式环境部署",
+                        submitter: "${env.LEADER_USER}",
+                        parameters: [
+                            choice(choices: "Yes\nNo\n", description: '开发组长确认是否部署，不同意请选择No!', name: 'Master_Confirm')
+                        ],
+                    )
+                    echo "${env.Master_Confirm}"
                 }
             }
         }
