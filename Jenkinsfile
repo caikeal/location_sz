@@ -34,12 +34,7 @@ pipeline {
         stage('获取参数'){
             steps{
                 script{
-                    echo "${env.aps}"
-                    def apt = "123"
-                    sh '''
-                        echo "${aps}"
-                        echo "${apt}"
-                    '''
+                    echo "${env.TAG_NAME}"
                 }
             }
         }
