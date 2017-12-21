@@ -34,7 +34,11 @@ pipeline {
         stage('获取参数'){
             steps{
                 script{
-                    echo "${env.TAG_NAME}"
+                    if (${env.TAG_NAME}) {
+                        echo "${env.TAG_NAME}"
+                    } else {
+                        echo "无"
+                    }
                 }
             }
         }
