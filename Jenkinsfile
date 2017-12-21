@@ -42,7 +42,11 @@ pipeline {
                             choice(choices: "Yes\nNo\n", description: '开发组长确认是否部署，不同意请选择No!', name: 'Master_Confirm')
                         ],
                     )
-                    echo "${env.Master_Confirm}"
+                    if (!"${env.Master_Confirm}".contains("Yes")) {
+                        echo "1"
+                    } else {
+                        echo "2"
+                    }
                 }
             }
         }
