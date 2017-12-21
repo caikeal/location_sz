@@ -43,7 +43,7 @@ pipeline {
                         ],
                     )
                     if (!"${env.Master_Confirm}".contains("Yes")) {
-                        echo "1"
+                        throw new Exception('组长拒绝部署')
                     } else {
                         echo "2"
                     }
