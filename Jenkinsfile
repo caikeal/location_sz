@@ -37,7 +37,7 @@ pipeline {
                     if (env.TAG_NAME) {
                         echo "${env.TAG_NAME}"
                     } else {
-                        echo "无"
+                        echo "${env.BRANCH_NAME}"
                     }
                 }
             }
