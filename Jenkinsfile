@@ -34,27 +34,7 @@ pipeline {
         stage('获取参数'){
             steps{
                 script{
-                    try {
-                        timeout(time: 10, unit: 'SECONDS') {
-                            env.Master_Confirm = input(
-                                message: '是否开始部署正式环境？',
-                                ok: "确定",
-                                submitter: "${env.LEADER_USER}",
-                                parameters: [
-                                    choice(choices: "Yes\nNo\n", description: '开发组长确认是否部署，不同意请选择No!', name: 'Master_Confirm')
-                                ]
-                            )
-                        }
-                    } catch(err){
-                        echo err.toString()
-                        env.Master_Confirm='No'
-                    }
-
-                    if (!"${env.Master_Confirm}".contains("Yes")) {
-                        throw new Exception('组长拒绝部署')
-                    } else {
-                        echo "2"
-                    }
+                    echo ceil(env.BUILD_NUMBER / 100)
                 }
             }
         }
