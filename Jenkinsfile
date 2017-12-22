@@ -37,6 +37,7 @@ pipeline {
                     def po = env.BUILD_NUMBER.toInteger()
                     echo "${po}"
                     echo "${po/100}"
+                    echo "${Math.round(po/100)}"
                 }
             }
         }
