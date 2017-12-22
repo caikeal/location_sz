@@ -41,6 +41,7 @@ pipeline {
                         parameters: [
                             choice(choices: "Yes\nNo\n", description: '开发组长确认是否部署，不同意请选择No!', name: 'Master_Confirm')
                         ],
+                        requestTimeout: 1*60*1000
                     )
                     if (!"${env.Master_Confirm}".contains("Yes")) {
                         throw new Exception('组长拒绝部署')
