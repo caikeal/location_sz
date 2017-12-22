@@ -34,7 +34,7 @@ pipeline {
         stage('获取参数'){
             steps{
                 script{
-                    echo ceil(env.BUILD_NUMBER / 100)
+                    echo ceil(env.BUILD_NUMBER.toInteger() / 100)
                 }
             }
         }
