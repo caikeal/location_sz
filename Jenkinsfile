@@ -47,6 +47,7 @@ pipeline {
                         }
                     } catch(err){
                         env.Master_Confirm='No'
+                        throw new Exception()
                     }
 
                     if (!"${env.Master_Confirm}".contains("Yes")) {
