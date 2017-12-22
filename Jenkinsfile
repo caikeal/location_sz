@@ -34,8 +34,9 @@ pipeline {
         stage('获取参数'){
             steps{
                 script{
-                    echo env.BUILD_NUMBER.toInteger()
-                    echo (env.BUILD_NUMBER.toInteger() / 100)
+                    def po = env.BUILD_NUMBER.toInteger()
+                    echo "${po}"
+                    echo "${po/100}"
                 }
             }
         }
