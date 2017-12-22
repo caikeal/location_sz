@@ -34,8 +34,8 @@ pipeline {
         stage('获取参数'){
             steps{
                 script{
-                    timeout(time: 1, unit: 'MINUTES') {
-                         try {
+                    try {
+                        timeout(time: 10, unit: 'SECONDS') {
                             env.Master_Confirm = input(
                                 message: '是否开始部署正式环境？',
                                 ok: "确定",
@@ -44,9 +44,10 @@ pipeline {
                                     choice(choices: "Yes\nNo\n", description: '开发组长确认是否部署，不同意请选择No!', name: 'Master_Confirm')
                                 ]
                             )
-                        } catch(err){
-                            env.Master_Confirm='No'
                         }
+                    } catch(err){
+                        echo err.toString()
+                        env.Master_Confirm='No'
                     }
 
                     if (!"${env.Master_Confirm}".contains("Yes")) {
