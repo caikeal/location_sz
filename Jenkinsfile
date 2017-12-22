@@ -37,7 +37,7 @@ pipeline {
                     def po = env.BUILD_NUMBER.toInteger()
                     echo "${po}"
                     echo "${po/100}"
-                    double cop = (po/100)
+                    def cop = (po/100)
                     pop = Math.ceil(cop)
                     echo "${pop}"
                 }
